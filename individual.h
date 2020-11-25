@@ -6,15 +6,15 @@
 #define CARDS_INDIVIDUAL_H
 
 #include <iostream>
-#include <time.h>
 #include <tuple>
 #include <random>
 #define N 10
+#define S 100
 
 
 class Individual {
     bool chromosome[N];
-    double fitness;
+    int fitness;
     double influence;
 
 
@@ -26,11 +26,10 @@ public:
         std::uniform_int_distribution<int> dist (0, 1);
         for(bool & i : chromosome) {
             i = dist(mt);
-            std::cout<<i;
         }
-        std::cout<<"\n";
 
     }
+
     void print(){
         int sumA = 0;
         int sumB = 0;
@@ -47,7 +46,7 @@ public:
         std::cout<<"\n"<<"A: "<<sumA<<" B: "<<sumB<<"\n";
     }
 
-    double getFitness(int a ,int b){
+    int getFitness(int a ,int b){
         int heapA = 0;
         int heapB = 0;
         for(int i = 0; i < N; i++) {
