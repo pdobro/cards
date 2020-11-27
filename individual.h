@@ -8,8 +8,12 @@
 #include <iostream>
 #include <tuple>
 #include <random>
-#define N 10
-#define S 100
+
+#include "random.h"
+
+
+#define N 50
+#define S 20
 
 
 class Individual {
@@ -21,11 +25,8 @@ class Individual {
 public:
 
     Individual() {
-        std::random_device rd;
-        std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> dist (0, 1);
         for(bool & i : chromosome) {
-            i = dist(mt);
+            i = getIntRand(0 , 1);
         }
 
     }
@@ -46,7 +47,7 @@ public:
         std::cout<<"\n"<<"A: "<<sumA<<" B: "<<sumB<<"\n";
     }
 
-    int getFitness(int a ,int b){
+    int setFitness(int a , int b){
         int heapA = 0;
         int heapB = 0;
         for(int i = 0; i < N; i++) {
@@ -59,12 +60,14 @@ public:
         return fitness;
     }
 
+    void mutate() {
+        int bit = getIntRand(0, N - 1);
+        chromosome[bit] = !chromosome[bit];
+    }
 
-    std::tuple<Individual, Individual> crossover(Individual parent) {
-        std::random_device rd;
-        std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> dist (0, N);
-        int point = dist(mt);
+
+    std::tuple<Individual, Individual> onePointCrossover(Individual parent) {
+        int point = getIntRand(0, N - 1);
 
         Individual childA, childB;
         for(int i = 0; i < N; i++) {
@@ -78,6 +81,28 @@ public:
         }
         return {childA, childB};
     }
+
+    bool operator <(const Individual &other) const {
+        return fitness < other.fitness;
+    }
+
+    bool operator >(const Individual &other) const {
+        return fitness > other.fitness;
+    }
+
+    int getFitness() const {
+        return this->fitness;
+    }
+
+    double getInfluence() const {
+        return this->influence;
+    }
+
+    void setInfluence(double val) {
+        this->influence = val;
+    }
+
+
 
 
 };

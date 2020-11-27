@@ -1,18 +1,13 @@
 #include <iostream>
-#include "individual.h"
+
 #include "generation.h"
 int main() {
-    Individual parent1;
-    Individual parent2;
-    std::vector<Individual> T;
+    Generation generation;
 
-    parent1.print();
-    parent2.print();
-    auto [a, b] = parent1.crossover(parent2);
-
-    a.print();
-    b.print();
-    std::cout << "Fitness: " << a.getFitness(10,20)<< std::endl;
+    for (int i = 0; i < 20; i++){
+        generation.strategyMuLambda();
+    }
+    generation.getFirst();
 
     return 0;
 }
