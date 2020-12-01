@@ -1,6 +1,4 @@
-//
-// Created by patryk on 27.11.2020.
-//
+
 
 #ifndef CARDS_RANDOM_H
 #define CARDS_RANDOM_H

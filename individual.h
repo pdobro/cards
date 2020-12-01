@@ -1,6 +1,4 @@
-//
-// Created by patryk on 25.11.2020.
-//
+
 
 #ifndef CARDS_INDIVIDUAL_H
 #define CARDS_INDIVIDUAL_H
@@ -12,8 +10,8 @@
 #include "random.h"
 
 
-#define N 50
-#define S 20
+#define N 500
+#define S 40
 
 
 class Individual {

@@ -1,15 +1,13 @@
-//
-// Created by patryk on 25.11.2020.
-//
+
 
 #ifndef CARDS_GENERATION_H
 #define CARDS_GENERATION_H
 
-#define MU 15
-#define LAMBDA 20
+#define MU 40
+#define LAMBDA 50
 
-#define A 900
-#define B 375
+#define A 120000
+#define B 5250
 
 #define CROSSOVER_PROBABILITY 0.8
 #define MUTATION_PROBABILITY 0.04
@@ -118,7 +116,7 @@ public:
             children.push_back(childA);
             children.push_back(childB);
         }
-
+        population.clear();
         for (auto &child: children) {
             population.push_back(child);
         }
@@ -130,8 +128,7 @@ public:
     }
 
     int getFirst() {
-        population[0].print();
-        std::cout<<"\nfitness: "<<population[0].getFitness();
+        return population[0].getFitness();
     }
 
 
